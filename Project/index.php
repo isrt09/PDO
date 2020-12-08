@@ -29,20 +29,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>mark@gmail.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Delete</a></td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>John</td>
-                <td>john@gmail.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Delete</a></td>
-              </tr>
+                <?php 
+                    $sql  = "SELECT * FROM users";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                       $user_id    = $row['user_id'];
+                       $user_name  = $row['user_name'];
+                       $user_email = $row['user_email']; ?>                      
+                       <tr>
+                        <th><?php echo $user_id; ?></th>
+                        <td><?php echo $user_name; ?></td>
+                        <td><?php echo $user_email; ?></td>                        
+                        <td><a href="index.php?edit=<?php echo $user_id; ?>">Edit</a></td>
+                        <td><a href="index.php?del=<?php echo $user_id; ?>">Delete</a></td>
+                      </tr>              
+                <?php } ?>              
             </tbody>
         </table>
 
