@@ -69,7 +69,12 @@
                         <th><?php echo $user_id; ?></th>
                         <td><?php echo $user_name; ?></td>
                         <td><?php echo $user_email; ?></td>                        
-                        <td><a href="index.php?edit=<?php echo $user_id; ?>">Edit</a></td>
+                        <td>
+                            <form action="edit.php" method="post">
+                                <input type="hidden" name="edit" value="<?php echo $user_id; ?>">
+                                <input type="submit" value="update" class="btn btn-success">
+                            </form>
+                        </td>
                         <td>
                             <form action="index.php" method="POST">
                                 <input type="hidden" name="val" value="<?php echo $user_id; ?>">
